@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package todolist;
+
+option go_package = "./pb";
+
+service TodoList {
+    rpc AddTodo (Todo) returns (TodoResponse);
+    rpc GetTodos (Empty) returns (TodoListResponse);
+    rpc DeleteTodo (DeleteTodoRequest) returns (TodoResponse);
+}
+
+message Todo {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+}
+
+message TodoResponse {
+    Todo todo = 1;
+    string message = 2;
+}
+
+message TodoListResponse {
+    repeated Todo todos = 1;
+}
+
+message DeleteTodoRequest {
+    int32 id = 1;
+}
+
+message Empty {}
